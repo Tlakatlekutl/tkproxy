@@ -1,0 +1,21 @@
+.navigation-panel {
+    border-bottom-style: groove;
+    height: 5vh;
+    width: 100vh;
+    position: fixed;
+}
+
+.inner-panel {
+    position: fixed;
+    margin-left: 30%;
+}
+
+.url-input {
+    width: 200px;
+}
+
+.frame {
+    margin-top: 6vh;
+    width: 100%;
+    height: 90vh;
+}
