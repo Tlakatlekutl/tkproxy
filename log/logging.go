@@ -1,9 +1,9 @@
 package log
 
 import (
-	"strings"
-	"log"
 	"io"
+	"log"
+	"strings"
 )
 
 type DebugLevel int
@@ -13,6 +13,7 @@ const (
 	warning
 	info
 	trace
+	debug
 )
 
 var DLevel DebugLevel = err
@@ -25,6 +26,7 @@ var DLevel DebugLevel = err
 // SetDebugLevel("ALL")
 // SetDebugLevel("NOLOG")
 func SetDebugLevel(args ...string) bool {
+argsloop:
 	for _, l := range args {
 		switch strings.ToUpper(l) {
 		case "ERROR":
@@ -35,8 +37,11 @@ func SetDebugLevel(args ...string) bool {
 			DLevel |= info
 		case "TRACE":
 			DLevel |= trace
+		case "DEBUG":
+			DLevel |= debug
 		case "NOLOG":
 			DLevel = 0
+			break argsloop
 		case "ALL":
 			DLevel = err | warning | info | trace
 		default:
@@ -54,33 +59,41 @@ func SetLogOUT(w io.Writer) {
 }
 
 // Log a message if the ERROR parameter is enabled
-func Error(msg string, args ...interface{})  {
-	if DLevel & err == err {
-		msg = "[ERROR] "+ msg
+func Error(msg string, args ...interface{}) {
+	if DLevel&err == err {
+		msg = "[ERROR] " + msg
 		log.Printf(msg, args...)
 	}
 }
 
 // Log a message if the WARNING parameter is enabled
-func Warning(msg string, args ...interface{})  {
-	if DLevel & warning == warning {
-		msg = "[WARN ] "+ msg
+func Warning(msg string, args ...interface{}) {
+	if DLevel&warning == warning {
+		msg = "[WARN ] " + msg
 		log.Printf(msg, args...)
 	}
 }
 
 // Log a message if the INFO parameter is enabled
-func Info(msg string, args ...interface{})  {
-	if DLevel & info == info {
-		msg = "[INFO ] "+ msg
+func Info(msg string, args ...interface{}) {
+	if DLevel&info == info {
+		msg = "[INFO ] " + msg
 		log.Printf(msg, args...)
 	}
 }
 
 // Log a message if the TRACE parameter is enabled
-func Trace(msg string, args ...interface{})  {
-	if DLevel & trace == trace {
-		msg = "[TRACE] "+ msg
+func Trace(msg string, args ...interface{}) {
+	if DLevel&trace == trace {
+		msg = "[TRACE] " + msg
+		log.Printf(msg, args...)
+	}
+}
+
+// Log a message if the DEBUG parameter is enabled
+func Debug(msg string, args ...interface{}) {
+	if DLevel&debug == debug {
+		msg = "[DEBUG] " + msg
 		log.Printf(msg, args...)
 	}
 }

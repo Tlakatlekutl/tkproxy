@@ -1,7 +1,7 @@
 .navigation-panel {
     border-bottom-style: groove;
     height: 5vh;
-    width: 100vh;
+    width: 100%;
     position: fixed;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .frame {
-    margin-top: 6vh;
+    padding-top: 3vh;
     width: 100%;
     height: 90vh;
 }

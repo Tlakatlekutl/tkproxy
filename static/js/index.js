@@ -18,7 +18,7 @@
 
     submit.onclick = function () {
         init.body = JSON.stringify({url: input.value});
-        fetch('/data/', init).then(function(response) {
+        fetch('/go/', init).then(function(response) {
             return response.text();
         }).then(function(string) {
             frame.innerHTML = string;

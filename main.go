@@ -5,6 +5,7 @@ import (
 
 	_ "github.com/Tlakatlekutl/tkproxy/static"
 	"github.com/Tlakatlekutl/tkproxy/log"
+	_ "github.com/Tlakatlekutl/tkproxy/server"
 )
 
 func main() {
